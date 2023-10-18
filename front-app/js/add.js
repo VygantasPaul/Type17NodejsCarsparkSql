@@ -54,7 +54,7 @@ const onCheckAddCar = (carData) => {
         const image = document.querySelector('#car-image').value;
 
         responseWrap.innerHTML = '';
-        if (title === '' || price === '' || numberplates === '') {  // validation
+        if (!title || !price || !numberplates) {   // validation
             createResponseAlert('Please fill all fields');
             return false;
         } else if (image === '') {
