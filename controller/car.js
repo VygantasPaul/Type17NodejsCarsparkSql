@@ -11,13 +11,23 @@ const ALL_CARS = async (req, res) => {
 }
 const GET_CAR_ID = async (req, res) => {
     try {
-        const car = await db.query(`SELECT * from public.cars WHERE id = ${req.params.id}`)
-        return res.status(201).json({ response: car.rows[0], status: "Car ID" })
+        const carId = parseInt(req.params.id);
+        if (isNaN(carId)) {
+            return res.status(400).json({ response: "Invalid car ID", status: "Error" });
+        }
+
+        const car = await db.query(`SELECT * from public.cars WHERE id = ${carId}`);
+        if (car.rows.length === 0) {
+            return res.status(404).json({ response: "Car not found", status: "Error" });
+        }
+
+        return res.status(200).json({ response: car.rows[0], status: "Car ID" });
     } catch (err) {
         console.log("ERROR: ", err);
-        return res.status(500).json({ response: "something went wrong" });
+        return res.status(500).json({ response: "Something went wrong", status: "Error" });
     }
-}
+};
+
 const ADD_CAR = async (req, res) => {
     try {
         if (!req.body.title || !req.body.price || !req.body.numberplates) {

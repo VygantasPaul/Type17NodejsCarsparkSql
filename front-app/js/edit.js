@@ -12,7 +12,7 @@ const createResponseAlert = (message) => {
 
 const toDisplayData = (carData) => {
     const car = carData;
-    console.log(car)
+
     if (car) {
         const carTitle = document.querySelector('#car-edit-title');
         carTitle.setAttribute("value", car.title)
@@ -68,7 +68,8 @@ const updateCar = async (carUpdated) => {
 
 const onCheckCar = (car) => {
     if (car) {
-        const urlRegex = /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([\/\w .-]*)*\/?$/;
+        const urlRegex = /\.(gif|jpe?g|tiff?|png|webp|bmp)$/i;
+
         const title = document.querySelector('#car-edit-title').value;
         const price = document.querySelector('#car-edit-price').value;
         const numberplates = document.querySelector('#car-edit-numberplates').value;

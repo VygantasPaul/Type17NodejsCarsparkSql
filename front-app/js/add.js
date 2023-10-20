@@ -46,7 +46,7 @@ const insertValues = async (car) => {
 }
 const onCheckAddCar = (carData) => {
     if (carData) {
-        const urlRegex = /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([\/\w .-]*)*\/?$/;
+        const urlRegex = /\.(gif|jpe?g|tiff?|png|webp|bmp)$/i;
 
         const title = document.querySelector('#car-title').value;
         const price = document.querySelector('#car-price').value;
